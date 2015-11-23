@@ -1,3 +1,18 @@
+#include <SoftwareSerial.h>
+ 
+#define rxPin 2
+#define txPin 3
+
+SoftwareSerial SwSerial(txPin, rxPin);
+char data;
+
+void setup() {
+  Serial.begin(9600);
+  SwSerial.begin(9600);
+  Serial.println("Ready..");
+}
+
+
 int pin = 8;
 unsigned long duration;
 unsigned long starttime;
@@ -19,15 +34,12 @@ int ad_conv(byte channel, byte num);
 int calc_RH10(int adval);
 
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(8, INPUT);
-  starttime = millis();        //get the current time;
-}
 
 
 void loop() {
   {
+
+    
     duration = pulseIn(pin, LOW);
     lowpulseoccupancy = lowpulseoccupancy + duration;
 
